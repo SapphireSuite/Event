@@ -1,5 +1,7 @@
 // Copyright(c) 2022 Sapphire's Suite. All Rights Reserved.
 
+#include <cstring>
+
 #include <gtest/gtest.h>
 
 #include <SA/Event/Event.hpp>
