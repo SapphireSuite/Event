@@ -1,0 +1,13 @@
+// Copyright (c) 2022 Sapphire's Suite. All Rights Reserved.
+
+
+#pragma once
+
+#ifndef SAPPHIRE_COLLECTIONS_EVENT_GUARD
+#define SAPPHIRE_COLLECTIONS_EVENT_GUARD
+
+#include <SA/Event/Function.hpp>
+#include <SA/Event/PackedFunction.hpp>
+#include <SA/Event/Event.hpp>
+
+#endif // GUARD
