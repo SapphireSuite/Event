@@ -1,0 +1,78 @@
+# Copyright (c) 2022 Sapphire's Suite. All Rights Reserved.
+
+name: MacOS
+
+# Trigger the action.
+on:
+  push:
+    branches:
+      - main
+      - master
+      - dev
+      - dev_*
+      - '!dev_unix'
+      - '!dev_win'
+      - '!dev_windows'
+
+
+# Settings common to all jobs.
+defaults:
+  run:
+    shell: bash
+
+
+# Variables common to all jobs.
+env:
+  CMAKE_V: '3.17.0'
+  CMAKE_OPTIONS: '-DSA_CI=1 -DSA_EVENT_BUILD_TESTS_OPT=ON'
+
+
+# Job matrix
+jobs:
+
+  Xcode:
+    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        config: [Debug, Release]
+        compiler_v: [11.7, 12.5, latest-stable]
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - uses: maxim-lobanov/setup-xcode@v1 # Install Xcode.
+        with:
+          xcode-version: ${{ matrix.compiler_v }}
+      - name: Generate Project
+        run: cmake -B Build -DCMAKE_BUILD_TYPE=${{ matrix.config }} ${{ env.CMAKE_OPTIONS }}
+      - name: Build Project
+        run: cmake --build Build --config ${{ matrix.config }} --verbose
+      - name: Run CTests
+        run: cd Build && ctest -C ${{ matrix.config }} -V
+
+  GNU:
+    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        config: [Debug, Release]
+        compiler_v: [11]
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - uses: seanmiddleditch/gha-setup-ninja@master # Install Ninja.
+      - name: "[Package] Install GCC"
+        run: |
+            brew install gcc@${{ matrix.compiler_v }}
+            echo "CC=gcc-${{ matrix.compiler_v }}" >> $GITHUB_ENV
+            echo "CXX=g++-${{ matrix.compiler_v }}" >> $GITHUB_ENV
+      - name: Generate Project
+        run: cmake -B Build -DCMAKE_BUILD_TYPE=${{ matrix.config }} ${{ env.CMAKE_OPTIONS }} -G Ninja
+      - name: Build Project
+        run: cmake --build Build --config ${{ matrix.config }} --verbose
+      - name: Run CTests
+        run: cd Build && ctest -C ${{ matrix.config }} -V
