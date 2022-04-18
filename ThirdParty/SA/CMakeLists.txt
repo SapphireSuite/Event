@@ -4,7 +4,7 @@
 
 # Entrypoints
 
-include(CMake_FetchModule/SA_FetchModule.cmake)
+add_subdirectory(CMake_Utils)
 
 if(SA_EVENT_USE_LOGGER_OPT)
 
