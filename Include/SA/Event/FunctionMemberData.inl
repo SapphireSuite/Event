@@ -23,9 +23,9 @@ namespace Sa
 		bool FuncMemberData<C, R, Args...>::Compare(const FuncMemberDataBase* _other) const
 		{
 			SA_ASSERT(Nullptr, SA/Event/Function, _other, L"Compare with internal data nullptr");
-			const FuncMemberData* const memData = reinterpret_cast<const FuncMemberData*>(_other);
+			const FuncMemberData* const otherData = reinterpret_cast<const FuncMemberData*>(_other);
 
-			return reinterpret_cast<uint64_t>(caller) && reinterpret_cast<uint64_t>(memData->caller) && func == memData->func;
+			return caller == otherData->caller && func == otherData->func;
 		}
 
 

@@ -74,25 +74,34 @@ namespace Sa::UT::FunctionTest
 
 	TEST(Function, Equals)
 	{
-		A a;
+		A a1;
+		A a2;
 		const Function f1 = Foo;
-		const Function f2(&a, &A::Bar);
+		const Function f2(&a1, &A::Bar);
+		const Function f3(&a2, &A::Bar);
 
 		EXPECT_TRUE(f1.Equals(f1));
 		EXPECT_FALSE(f1.Equals(f2));
+		EXPECT_FALSE(f2.Equals(f3));
 
 		EXPECT_EQ(f1, f1);
+		EXPECT_EQ(f2, f2);
+		EXPECT_TRUE(f1 == f1);
 		EXPECT_FALSE(f1 == f2);
+		EXPECT_FALSE(f2 == f3);
 
 		EXPECT_NE(f1, f2);
+		EXPECT_NE(f2, f3);
 		EXPECT_FALSE(f1 != f1);
+		EXPECT_TRUE(f1 != f2);
+		EXPECT_TRUE(f2 != f3);
 
 
-		Function f3 = Foo;
-		EXPECT_FALSE(f3.IsEmpty());
+		Function f4 = Foo;
+		EXPECT_FALSE(f4.IsEmpty());
 
-		f3.Clear();
-		EXPECT_TRUE(f3.IsEmpty());
+		f4.Clear();
+		EXPECT_TRUE(f4.IsEmpty());
 	}
 
 	TEST(Function, MoveOperators)

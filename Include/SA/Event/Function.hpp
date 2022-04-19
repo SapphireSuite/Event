@@ -29,7 +29,7 @@ namespace Sa
 	class Function
 	{
 		/// Abstract member data (used by function interface for member function call).
-		Intl::FuncMemberDataBase* mData = nullptr;
+		Intl::FuncMemberDataBase* mMemberData = nullptr;
 
 		union
 		{

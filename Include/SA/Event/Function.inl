@@ -6,7 +6,7 @@ namespace Sa
 
 	template <typename R, typename... Args>
 	Function<R, Args...>::Function(R(*_func)(Args...)) noexcept :
-		mData{ nullptr },
+		mMemberData{ nullptr },
 		mSFunc{ _func }
 	{
 	}
@@ -14,7 +14,7 @@ namespace Sa
 	template <typename R, typename... Args>
 	template <typename C>
 	Function<R, Args...>::Function(C* _caller, R(C::* _func)(Args...)) :
-		mData{ new Intl::FuncMemberData<C, R, Args...>(_caller, _func) },
+		mMemberData{ new Intl::FuncMemberData<C, R, Args...>(_caller, _func) },
 		mIntlFunc{ Intl::FuncMemberData<C, R, Args...>::InterfaceCall }
 	{
 	}
@@ -23,10 +23,10 @@ namespace Sa
 	template <typename R, typename... Args>
 	Function<R, Args...>::Function(Function&& _other) noexcept
 	{
-		if (_other.mData)
+		if (_other.mMemberData)
 		{
-			mData = _other.mData;
-			_other.mData = nullptr;
+			mMemberData = _other.mMemberData;
+			_other.mMemberData = nullptr;
 
 			mIntlFunc = _other.mIntlFunc;
 			_other.mIntlFunc = nullptr;
@@ -41,9 +41,9 @@ namespace Sa
 	template <typename R, typename... Args>
 	Function<R, Args...>::Function(const Function& _other) noexcept
 	{
-		if (_other.mData)
+		if (_other.mMemberData)
 		{
-			mData = _other.mData->Duplicate();
+			mMemberData = _other.mMemberData->Duplicate();
 			mIntlFunc = _other.mIntlFunc;
 		}
 		else
@@ -76,10 +76,10 @@ namespace Sa
 	template <typename R, typename... Args>
 	bool Function<R, Args...>::Equals(const Function& _other) const
 	{
-		if (mData)
+		if (mMemberData)
 		{
-			if (_other.mData)
-				return mData->Compare(_other.mData);
+			if (_other.mMemberData)
+				return mMemberData->Compare(_other.mMemberData);
 		}
 		else if (mSFunc)
 			return mSFunc == _other.mSFunc;
@@ -106,10 +106,10 @@ namespace Sa
 	template <typename R, typename... Args>
 	void Function<R, Args...>::Clear()
 	{
-		if (mData)
+		if (mMemberData)
 		{
-			delete mData;
-			mData = nullptr;
+			delete mMemberData;
+			mMemberData = nullptr;
 		}
 
 		mSFunc = nullptr;
@@ -130,7 +130,7 @@ namespace Sa
 	{
 		Clear();
 
-		mData = new Intl::FuncMemberData<C, R, Args...>(_caller, _func);
+		mMemberData = new Intl::FuncMemberData<C, R, Args...>(_caller, _func);
 		mIntlFunc = Intl::FuncMemberData<C, R, Args...>::InterfaceCall;
 	}
 
@@ -140,10 +140,10 @@ namespace Sa
 	{
 		Clear();
 
-		if (_rhs.mData)
+		if (_rhs.mMemberData)
 		{
-			mData = _rhs.mData;
-			_rhs.mData = nullptr;
+			mMemberData = _rhs.mMemberData;
+			_rhs.mMemberData = nullptr;
 
 			mIntlFunc = _rhs.mIntlFunc;
 			_rhs.mIntlFunc = nullptr;
@@ -163,9 +163,9 @@ namespace Sa
 	{
 		Clear();
 
-		if (_rhs.mData)
+		if (_rhs.mMemberData)
 		{
-			mData = _rhs.mData->Duplicate();
+			mMemberData = _rhs.mMemberData->Duplicate();
 			mIntlFunc = _rhs.mIntlFunc;
 		}
 		else
@@ -189,8 +189,8 @@ namespace Sa
 	template <typename R, typename... Args>
 	R Function<R, Args...>::Execute(Args... _args) const
 	{
-		if (mData)
-			return mIntlFunc(mData, std::forward<Args>(_args)...);
+		if (mMemberData)
+			return mIntlFunc(mMemberData, std::forward<Args>(_args)...);
 		else if(mSFunc)
 			return mSFunc(std::forward<Args>(_args)...);
 
