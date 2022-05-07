@@ -2,6 +2,9 @@
 
 # Visual Studio cache.
 .vs/
+.vscode/*
+!.vscode/launch.json
+!.vscode/settings.json
 
 
 # Vim cache.
