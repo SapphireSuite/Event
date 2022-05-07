@@ -1,7 +1,7 @@
 # Copyright (c) 2022 Sapphire's Suite. All Rights Reserved.
 
 
-SA_SetMaxWarningLevel(TARGET SA_Event LINK INTERFACE)
+SA_SetupTargetForTesting(TARGET SA_Event LINK INTERFACE)
 
 
 
