@@ -203,6 +203,12 @@ namespace SA
 
 #include <SA/Event/PackedFunction.inl>
 
+
+/**
+*	\example PackedFunctionTests.cpp
+*	Examples and Unitary Tests for PackedFunction.
+*/
+
 /** \} */
 
 #endif // GUARD

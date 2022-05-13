@@ -245,6 +245,11 @@ namespace SA
 #include <SA/Event/Function.inl>
 
 
+/**
+*	\example FunctionTests.cpp
+*	Examples and Unitary Tests for Function.
+*/
+
 /** \} */
 
 #endif // GUARD

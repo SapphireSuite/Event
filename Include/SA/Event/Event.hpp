@@ -306,7 +306,12 @@ namespace SA
 }
 
 #include <SA/Event/Event.inl>
-	
+
+
+/**
+*	\example EventTests.cpp
+*	Examples and Unitary Tests for Event.
+*/
 
 /** \} */
 
