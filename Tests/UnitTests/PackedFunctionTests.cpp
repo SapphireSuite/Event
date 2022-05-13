@@ -3,9 +3,9 @@
 #include <gtest/gtest.h>
 
 #include <SA/Event/PackedFunction.hpp>
-using namespace Sa;
+using namespace SA;
 
-namespace Sa::UT::PackedFunctionTest
+namespace SA::UT::PackedFunctionTest
 {
 //{ Variables
 

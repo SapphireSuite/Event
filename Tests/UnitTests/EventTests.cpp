@@ -5,9 +5,9 @@
 #include <gtest/gtest.h>
 
 #include <SA/Event/Event.hpp>
-using namespace Sa;
+using namespace SA;
 
-namespace Sa::UT::EventTest
+namespace SA::UT::EventTest
 {
 //{ Variables
 

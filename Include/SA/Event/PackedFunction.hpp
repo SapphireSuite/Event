@@ -19,7 +19,7 @@
 */
 
 
-namespace Sa
+namespace SA
 {
 	/**
 	*	\brief <b>Packed Function</b> type implementation.

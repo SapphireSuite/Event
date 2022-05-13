@@ -8,11 +8,11 @@ int main(int argc, char** argv)
 {
 #if SA_LOGGER_IMPL
 
-	Sa::Logger logger;
-	Sa::ConsoleLogStream cslStr;
+	SA::Logger logger;
+	SA::ConsoleLogStream cslStr;
 	logger.Register(cslStr);
 
-	Sa::Debug::logger = &logger;
+	SA::Debug::logger = &logger;
 
 #endif
 

@@ -3,9 +3,9 @@
 #include <gtest/gtest.h>
 
 #include <SA/Event/Function.hpp>
-using namespace Sa;
+using namespace SA;
 
-namespace Sa::UT::FunctionTest
+namespace SA::UT::FunctionTest
 {
 //{ Variables
 
