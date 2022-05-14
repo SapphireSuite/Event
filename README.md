@@ -10,14 +10,16 @@ Links to the **official** [documentation](https://SapphireSuite.github.io/Event/
 
 
 # How To Use
+### Collection Header
+```cpp
+#include <SA/Collections/Event>
+```
+
 
 ## CMake
-Add the subdirectory to the build tree with
+Add the subdirectory to the build tree and link the library to your taget.
 ```cmake
 add_subdirectory(Event)
-```
-and link the library to your taget with
-```cmake
 target_link_libraries(<target> <link> SA_Event)
 ```
 
