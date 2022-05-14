@@ -104,6 +104,43 @@ namespace SA::UT::FunctionTest
 		EXPECT_TRUE(f4.IsEmpty());
 	}
 
+	TEST(Function, Set)
+	{
+		Function<int(int)> f1;
+
+		EXPECT_TRUE(f1.IsEmpty());
+
+		f1.Set(&Foo);
+		EXPECT_FALSE(f1.IsEmpty());
+		EXPECT_EQ(f1(3), 6);
+
+		A a1;
+		f1.Set(&a1, &A::Bar);
+		EXPECT_FALSE(f1.IsEmpty());
+
+		EXPECT_EQ(f1(3), 9);
+	}
+
+	TEST(Function, Clear)
+	{
+		Function<int(int)> f1;
+
+		EXPECT_TRUE(f1.IsEmpty());
+
+		f1.Set(&Foo);
+		EXPECT_FALSE(f1.IsEmpty());
+		
+		f1.Clear();
+		EXPECT_TRUE(f1.IsEmpty());
+
+
+		f1.Set(&Foo);
+		EXPECT_FALSE(f1.IsEmpty());
+
+		f1 = nullptr;
+		EXPECT_TRUE(f1.IsEmpty());
+	}
+
 	TEST(Function, MoveOperators)
 	{
 		// Static function move.

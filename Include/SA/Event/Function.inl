@@ -104,19 +104,6 @@ namespace SA
 //{ Set
 
 	template <typename R, typename... Args>
-	void Function<R, Args...>::Clear()
-	{
-		if (mMemberData)
-		{
-			delete mMemberData;
-			mMemberData = nullptr;
-		}
-
-		mSFunc = nullptr;
-	}
-
-
-	template <typename R, typename... Args>
 	void Function<R, Args...>::Set(R(*_func)(Args...))
 	{
 		Clear();
@@ -182,6 +169,31 @@ namespace SA
 
 		return *this;
 	}
+
+//}
+
+//{ Clear
+
+	template <typename R, typename... Args>
+	void Function<R, Args...>::Clear()
+	{
+		if (mMemberData)
+		{
+			delete mMemberData;
+			mMemberData = nullptr;
+		}
+
+		mSFunc = nullptr;
+	}
+
+	template <typename R, typename... Args>
+	Function<R, Args...>& Function<R, Args...>::operator=(nullptr_t)
+	{
+		Clear();
+
+		return *this;
+	}
+
 //}
 
 //{ Execute

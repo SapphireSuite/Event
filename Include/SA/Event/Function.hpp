@@ -136,13 +136,6 @@ namespace SA
 //{ Set
 
 		/**
-		*	\brief <b>Clear</b> bound function.
-		*	Free allocated memory.
-		*/
-		void Clear();
-
-
-		/**
 		*	\brief Set (assignation) new <b>static function</b> to bind.
 		*	Free previous allocated memory.
 		* 
@@ -195,6 +188,24 @@ namespace SA
 
 		//template <typename C>
 		//Function& operator=(C* _caller, R(C::* _func)(Args...));
+
+//}
+
+//{ Clear
+
+		/**
+		*	\brief <b>Clear</b> bound function.
+		*	Free allocated memory.
+		*/
+		void Clear();
+
+		/**
+		*	\brief <b>Clear</b> bound function.
+		*	Free allocated memory.
+		* 
+		*	\return this 
+		*/
+		Function& operator=(nullptr_t);
 
 //}
 
