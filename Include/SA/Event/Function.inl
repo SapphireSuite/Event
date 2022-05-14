@@ -187,7 +187,7 @@ namespace SA
 	}
 
 	template <typename R, typename... Args>
-	Function<R, Args...>& Function<R, Args...>::operator=(nullptr_t)
+	Function<R, Args...>& Function<R, Args...>::operator=(std::nullptr_t)
 	{
 		Clear();
 

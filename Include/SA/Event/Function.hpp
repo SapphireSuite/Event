@@ -5,6 +5,8 @@
 #ifndef SAPPHIRE_EVENT_FUNCTION_GUARD
 #define SAPPHIRE_EVENT_FUNCTION_GUARD
 
+#include <cstddef>
+
 #include <SA/Event/FunctionMemberData.hpp>
 
 /**
@@ -205,7 +207,7 @@ namespace SA
 		* 
 		*	\return this 
 		*/
-		Function& operator=(nullptr_t);
+		Function& operator=(std::nullptr_t);
 
 //}
 
