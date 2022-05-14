@@ -85,7 +85,7 @@ jobs:
 
         config: [Release]
         option:
-          - -DSA_EVENT_USE_LOGGER_OPT=OFF
+          - -DSA_EVENT_USE_LOGGER_OPT=ON
 
     steps:
       - uses: actions/checkout@v2

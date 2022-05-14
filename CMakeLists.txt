@@ -53,7 +53,7 @@ target_compile_definitions(SA_Event INTERFACE SA_EVENT_IMPL)
 # Options
 
 ## Add SA_Event's use SA_Logger.
-option(SA_EVENT_USE_LOGGER_OPT "Should compile and use SA_Logger" ON)
+option(SA_EVENT_USE_LOGGER_OPT "Should compile and use SA_Logger" OFF)
 
 if(SA_EVENT_USE_LOGGER_OPT)
 	target_link_libraries(SA_Event INTERFACE SA_Logger)
