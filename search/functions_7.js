@@ -1,0 +1,4 @@
+var searchData=
+[
+  ['packedfunction_0',['PackedFunction',['../class_s_a_1_1_packed_function.html#a96ae85902eff2684b411fc400d52aba7',1,'SA::PackedFunction::PackedFunction()=default'],['../class_s_a_1_1_packed_function.html#abc7460ae060983c5f635b43471813e04',1,'SA::PackedFunction::PackedFunction(R(*_func)(Args...), Args... _args) noexcept'],['../class_s_a_1_1_packed_function.html#aea1799e9f445da2cc363823682616f44',1,'SA::PackedFunction::PackedFunction(C *_caller, R(C::*_func)(Args...), Args... _args)'],['../class_s_a_1_1_packed_function.html#aed1f4ef223b88c82b350edc17dc3e34a',1,'SA::PackedFunction::PackedFunction(PackedFunction &amp;&amp;_other) noexcept'],['../class_s_a_1_1_packed_function.html#ae51c3243bdec4eeb136956a999d478d5',1,'SA::PackedFunction::PackedFunction(const PackedFunction &amp;_other) noexcept']]]
+];
