@@ -18,8 +18,8 @@ SA_ConfigureProject(SA_Event)
 
 add_library(SA_Event INTERFACE)
 
-SA_ConfigureTarget(TARGET SA_Event LINK INTERFACE)
-SA_TargetInterfaceSources(TARGET SA_Event)
+SA_ConfigureTarget(SA_Event LINK INTERFACE)
+SA_TargetInterfaceSources(SA_Event)
 
 
 
