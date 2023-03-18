@@ -8,11 +8,7 @@ int main(int argc, char** argv)
 {
 #if SA_LOGGER_IMPL
 
-	SA::Logger logger;
-	SA::ConsoleLogStream cslStr;
-	logger.Register(cslStr);
-
-	SA::Debug::logger = &logger;
+	SA::Debug::InitDefaultLogger();
 
 #endif
 

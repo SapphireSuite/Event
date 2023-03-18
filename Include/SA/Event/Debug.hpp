@@ -33,8 +33,6 @@
 
 	#define SA_ASSERT(...) {}
 
-	#define SA_ASSERT_EXEC(_type, _chan, _exec, ...) { _exec; }
-
 #endif
 
 

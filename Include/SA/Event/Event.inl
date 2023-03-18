@@ -22,7 +22,7 @@ namespace SA
 
 		for (auto it = mMemberFunctions.begin(); it != mMemberFunctions.end(); ++it)
 		{
-			SA_ASSERT(Nullptr, SA/Event/Event, it->data, L"Internal function call: data nullptr!");
+			SA_ASSERT((Nullptr, it->data), SA.Event.Event, L"Internal function call: data nullptr!");
 
 			delete it->data;
 		}
@@ -34,7 +34,7 @@ namespace SA
 	template <typename R, typename... Args>
 	void Event<R(Args...)>::Add(R(*_func)(Args...), R* _result)
 	{
-		SA_ASSERT(Nullptr, SA/Event/Event, _func, L"Add nullptr function!");
+		SA_ASSERT((Nullptr, _func), SA.Event.Event, L"Add nullptr function!");
 		
 		(void)_result;
 
@@ -48,8 +48,8 @@ namespace SA
 	template <typename C>
 	void Event<R(Args...)>::Add(C* _caller, R(C::* _func)(Args...), R* _result)
 	{
-		SA_ASSERT(Nullptr, SA/Event/Event, _caller, L"Add nullptr caller!");
-		SA_ASSERT(Nullptr, SA/Event/Event, _func, L"Add nullptr function!");
+		SA_ASSERT((Nullptr, _caller), SA.Event.Event, L"Add nullptr caller!");
+		SA_ASSERT((Nullptr, _func), SA.Event.Event, L"Add nullptr function!");
 
 		FuncMemberHandle& handle = mMemberFunctions.emplace_back(FuncMemberHandle
 		{
@@ -68,7 +68,7 @@ namespace SA
 	template <typename R, typename... Args>
 	bool Event<R(Args...)>::Remove(R(*_func)(Args...))
 	{
-		SA_ASSERT(Nullptr, SA/Event/Event, _func, L"Add nullptr function!");
+		SA_ASSERT((Nullptr, _func), SA.Event.Event, L"Add nullptr function!");
 
 		for (auto it = mFunctions.begin(); it != mFunctions.end(); ++it)
 		{
@@ -86,14 +86,14 @@ namespace SA
 	template <typename C>
 	bool Event<R(Args...)>::Remove(const C* _caller, R(C::* _func)(Args...))
 	{
-		SA_ASSERT(Nullptr, SA/Event/Event, _caller, L"Add nullptr caller!");
-		SA_ASSERT(Nullptr, SA/Event/Event, _func, L"Add nullptr function!");
+		SA_ASSERT((Nullptr, _caller), SA.Event.Event, L"Add nullptr caller!");
+		SA_ASSERT((Nullptr, _func), SA.Event.Event, L"Add nullptr function!");
 
 		for (auto it = mMemberFunctions.begin(); it != mMemberFunctions.end(); ++it)
 		{
 			Intl::FuncMemberData<C, R, Args...>* data = reinterpret_cast<Intl::FuncMemberData<C, R, Args...>*>(it->data);
 
-			SA_ASSERT(Nullptr, SA/Event/Event, data, L"Internal function call: data nullptr!");
+			SA_ASSERT((Nullptr, data), SA.Event.Event, L"Internal function call: data nullptr!");
 			
 			if (data->caller == _caller && data->func == _func)
 			{
@@ -111,7 +111,7 @@ namespace SA
 	template <typename R, typename... Args>
 	bool Event<R(Args...)>::RRemove(R(*_func)(Args...))
 	{
-		SA_ASSERT(Nullptr, SA/Event/Event, _func, L"Add nullptr function!");
+		SA_ASSERT((Nullptr, _func), SA.Event.Event, L"Add nullptr function!");
 
 		for (auto it = mFunctions.rbegin(); it != mFunctions.rend(); ++it)
 		{
@@ -130,14 +130,14 @@ namespace SA
 	template <typename C>
 	bool Event<R(Args...)>::RRemove(const C* _caller, R(C::* _func)(Args...))
 	{
-		SA_ASSERT(Nullptr, SA/Event/Event, _caller, L"Add nullptr caller!");
-		SA_ASSERT(Nullptr, SA/Event/Event, _func, L"Add nullptr function!");
+		SA_ASSERT((Nullptr, _caller), SA.Event.Event, L"Add nullptr caller!");
+		SA_ASSERT((Nullptr, _func), SA.Event.Event, L"Add nullptr function!");
 
 		for (auto it = mMemberFunctions.rbegin(); it != mMemberFunctions.rend(); ++it)
 		{
 			Intl::FuncMemberData<C, R, Args...>* data = reinterpret_cast<Intl::FuncMemberData<C, R, Args...>*>(it->data);
 
-			SA_ASSERT(Nullptr, SA/Event, data, L"Internal function call: data nullptr!");
+			SA_ASSERT((Nullptr, data), SA.Event.Event, L"Internal function call: data nullptr!");
 
 			if (data->caller == _caller && data->func == _func)
 			{
@@ -158,7 +158,7 @@ namespace SA
 	{
 		for (auto it = mFunctions.begin(); it != mFunctions.end(); ++it)
 		{
-			SA_ASSERT(Nullptr, SA/Event/Event, it->func, L"Execute nullptr function!");
+			SA_ASSERT((Nullptr, it->func), SA.Event.Event, L"Execute nullptr function!");
 
 			if constexpr (!std::is_same<R, void>::value)
 			{
@@ -174,7 +174,7 @@ namespace SA
 
 		for (auto it = mMemberFunctions.begin(); it != mMemberFunctions.end(); ++it)
 		{
-			SA_ASSERT(Nullptr, SA/Event/Event, it->func, L"Execute nullptr member function!");
+			SA_ASSERT((Nullptr, it->func), SA.Event.Event, L"Execute nullptr member function!");
 
 			if constexpr (!std::is_same<R, void>::value)
 			{
@@ -197,7 +197,7 @@ namespace SA
 
 		for (auto it = mFunctions.begin(); it != mFunctions.end(); ++it)
 		{
-			SA_ASSERT(Nullptr, SA/Event/Event, it->func, L"Execute nullptr function!");
+			SA_ASSERT((Nullptr, it->func), SA.Event.Event, L"Execute nullptr function!");
 			
 			R& res = _results.emplace_back(it->func(_args...));
 
@@ -207,7 +207,7 @@ namespace SA
 
 		for (auto it = mMemberFunctions.begin(); it != mMemberFunctions.end(); ++it)
 		{
-			SA_ASSERT(Nullptr, SA/Event/Event, it->func, L"Execute nullptr member function!");
+			SA_ASSERT((Nullptr, it->func), SA.Event.Event, L"Execute nullptr member function!");
 
 			R& res = _results.emplace_back(it->func(it->data, _args...));
 
