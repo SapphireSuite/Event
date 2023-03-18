@@ -14,18 +14,18 @@
 # CMake cache.
 out/
 CMakeFiles/
-CMake/
 CMakeCache.txt
 Makefile
 
 # CMake cloned repo
 Logger/
 googletest/
-
+googlebenchmark/
 
 # Build and Temp files.
 [Bb]uild/
 [Bb]uilds/
+[Ii]nstall/
 
 [Bb]in/
 
