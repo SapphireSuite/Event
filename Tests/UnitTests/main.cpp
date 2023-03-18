@@ -1,4 +1,4 @@
-// Copyright (c) 2022 Sapphire's Suite. All Rights Reserved.
+// Copyright (c) 2023 Sapphire's Suite. All Rights Reserved.
 
 #include <gtest/gtest.h>
 
@@ -8,7 +8,11 @@ int main(int argc, char** argv)
 {
 #if SA_LOGGER_IMPL
 
-	SA::Debug::InitDefaultLogger();
+	SA::Logger logger;
+	SA::ConsoleLogStream cslStr;
+	logger.Register(cslStr);
+
+	SA::Debug::logger = &logger;
 
 #endif
 

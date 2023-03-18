@@ -1,4 +1,4 @@
-:: Copyright (c) 2022 Sapphire's Suite. All Rights Reserved.
+:: Copyright (c) 2023 Sapphire's Suite. All Rights Reserved.
 
 @echo off
 
@@ -10,7 +10,6 @@ cls
 
 :: Query current directory name.
 for %%I in (.) do set CurrDirName=%%~nxI
-echo %CurrDirName%
 
 :: Set directory to root.
 if "%CurrDirName%" == "Doc" cd ../
