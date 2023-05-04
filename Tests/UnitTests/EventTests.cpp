@@ -124,7 +124,7 @@ namespace SA::UT::EventTest
 		e += &A::Bar;
 		e += lambda;
 
-		e(4);
+		e.Execute(4);
 
 		EXPECT_EQ(gFoo, 4);
 		EXPECT_EQ(A::sBar, 8);
@@ -209,7 +209,7 @@ namespace SA::UT::EventTest
 		EXPECT_TRUE(e.RRemove(RFoo));
 		EXPECT_TRUE(e.Remove(&b1, &B::RPim));
 
-		e(2);
+		e.Execute(2);
 		EXPECT_EQ(gFoo, 20);
 		EXPECT_EQ(A::sBar, 26);
 		EXPECT_EQ(gLambda, 12);

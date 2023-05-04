@@ -25,7 +25,7 @@ target_link_libraries(<target> <link> SA_Event)
 
 
 ## I. Event
-Create your **event** of type *Event<R(Args)>* with *R* as **return type** and _Args_ as **argument types**:
+Create your **event** of type *Event<R(Args...)>* with *R* as **return type** and _Args..._ as **argument types**:
 ```cpp
 Event<void(int)> ev;
 ```
@@ -33,8 +33,8 @@ Then **subscribe**/**unsubscribe** functions to the event:
 ```cpp
 struct MyStruct
 {
-	void Bar(int _i);
-	static void Foo(int _i);
+    void Bar(int _i);
+    static void Foo(int _i);
 };
 
 // Static function.
@@ -66,9 +66,36 @@ rev.Execute(results, 7);
 For more examples, see [Event Unit Tests](https://github.com/SapphireSuite/Event/blob/main/Tests/UnitTests/EventTests.cpp).
 
 
-## II. Function
+## II. OwnedEvent
+**OwnedEvent** is a specialized event type that can only be **raised** by a **owner class**.\
+Create your **owned-event** of type *OwnedEvent<OwnerT, R(Args...)>* with *OwnerT* as **owner class type**, *R* as **return type** and _Args..._ as **argument types**:
+```cpp
+class MyClass
+{
+public:
+    OwnedEvent<MyClass, void(int)> ev;
+
+    void Do(int _param)
+    {
+        // Only accessible through MyClass.
+        ev.Execute(_param);
+    }
+}
+
+MyClass mClass;
+
+mClass.ev += &MyStruct::Foo;
+mClass.ev -= &MyStruct::Foo;
+
+// Not accessible outside of MyClass.
+// mClass.ev(4);
+```
+For more examples, see [OwnedEvent Unit Tests](https://github.com/SapphireSuite/Event/blob/main/Tests/UnitTests/OwnedEventTests.cpp).
+
+
+## III. Function
 _Function_ is used to easliy store a pointer to function.
-Create your **function** of type *Function<R(Args)>* with *R* as **return type** and _Args_ as **argument types**:
+Create your **function** of type *Function<R(Args...)>* with *R* as **return type** and _Args..._ as **argument types**:
 ```cpp
 Function<void(int)> func;
 ```
@@ -76,8 +103,8 @@ Then **assign** a function:
 ```cpp
 struct MyStruct
 {
-	void Bar(int _i);
-	static void Foo(int _i);
+    void Bar(int _i);
+    static void Foo(int _i);
 };
 
 // Static function.
@@ -107,9 +134,10 @@ float result = rfunc.Execute(7);
 ```
 For more examples, see [Function Unit Tests](https://github.com/SapphireSuite/Event/blob/main/Tests/UnitTests/FunctionTests.cpp).
 
-## III. PackedFunction
+
+## IV. PackedFunction
 PackedFunction is used to easliy store a pointer to function with **packed** arguments.
-Create your **packed function** of type *PackedFunction<R(Args)>* with *R* as **return type** and _Args_ as **argument types**:
+Create your **packed function** of type *PackedFunction<R(Args...)>* with *R* as **return type** and _Args..._ as **argument types**:
 ```cpp
 PackedFunction<void(int)> pfunc;
 ```
@@ -117,8 +145,8 @@ Then **assign** a function:
 ```cpp
 struct MyStruct
 {
-	void Bar(int _i);
-	static void Foo(int _i);
+    void Bar(int _i);
+    static void Foo(int _i);
 };
 
 // Static function.
@@ -153,3 +181,8 @@ For more examples, see [Packed Unit Tests](https://github.com/SapphireSuite/Even
 # Authors
 
 **Maxime "mrouffet" ROUFFET** - main developer (maximerouffet@gmail.com)
+
+
+## Special Thanks
+
+Clément "[cfazilleau](https://github.com/cfazilleau)" FAZILLEAU - OwnedEvent implementation request.
